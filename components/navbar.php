@@ -1,5 +1,6 @@
 <html>
 <style>
+  
   #list {
     display: flex;
     width: 500px;
@@ -18,7 +19,6 @@
     border: none;
   }
 </style>
-
 <head>
   <link rel="stylesheet" href="style.css">
 </head>

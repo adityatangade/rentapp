@@ -27,10 +27,45 @@
   top: 50px;
 }
 
+/* scroll bar */
+/* General styles for the filters div */
+.filters {
+  max-height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 #f1f1f1; /* Firefox */
+}
+
+.filters
+/* WebKit browsers (Chrome, Safari) */
+.filters::-webkit-scrollbar {
+  width: 5px; /* Slim scrollbar width */
+  margin-top: 1%;
+}
+
+.filters::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+.filters::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar color */
+  border-radius: 10px; /* Rounded edges */
+  border: 1px solid #f1f1f1; /* Padding around scrollbar thumb */
+}
+
+.filters::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Hover state */
+}
+
+/* Optional: Styling for range input */
+.price-range .slider {
+  width: 100%;
+}
+
 /* range */
 .price-range {
     width: 65%;
-    margin: 50px 33px;
+    margin: 9.5%;
   }
   
 .slider {
@@ -71,10 +106,19 @@
     width: 80%; 
   }
 
+  .facilities{
+    margin-bottom: 100px;
+  }
+  /* facilities */
+  .facilities div{
+    margin-top: 20px;
+  }
   /* checkboxes */
   .form-group{
     width: 83%; 
   }
+
+  
   
   :root {
     --width: 100%;
@@ -112,15 +156,17 @@
       height: 100%; /* Increased height */
       overflow: hidden;
       margin-bottom: 20px; /* Added margin for separation */
+      background-color: #333;
     }
     .carouse {
       display: flex;
       transition: transform 0.5s ease;
     }
-    .carouse i{
+    
+    .carouse-contain i{
         position: absolute;
-        right: 25px;
-        top: 25px;
+        right: 15px;
+        top: 15px;
         z-index: 1;
     }
     .carouse-item {
@@ -128,6 +174,7 @@
       flex: 0 0 auto;
       position: relative;
      margin: auto;
+    
     }
 
     .carouse-item img {

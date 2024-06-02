@@ -100,47 +100,46 @@
                         </div>
                     </form>
                 </div>
-               <?php
+                <?php
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
                 $dbname = "rentalapp";
-                
+
                 // Create connection
                 $conn = mysqli_connect($servername, $username, $password, $dbname);
-                
+
                 //credentials
                 // Check connection
                 if (!$conn) {
                     die("Connection failed: " . mysqli_connect_error());
+                } else {
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        if (isset($_POST['username_login']) || isset($_POST['password_login'])) {
+                            $email = $_POST['username_login'];
+                            $password = $_POST['password_login'];
+                        $query = "SELECT * FROM users WHERE email='$email'";
+                        $result = mysqli_query($conn, $query);
+                        $row_num = mysqli_num_rows($result);
+                        if ($row_num == 0) {
+                            echo "user does not exits";
+                        } else if ($row_num == 1) {
+                            $row = mysqli_fetch_assoc($result);
+                            $name = $row['username'];
+                            $hashed_password = $row['password'];
+                            if (password_verify($password, $hashed_password)) {
+                                session_start();
+                                $_SESSION['loggedin'] = true;
+                                $_SESSION['username'] = $name;
+                            } else {
+                                echo "login failed";
+                            }
+                        }
+                    }
+                    }
+                    mysqli_close($conn);
                 }
-                else{
-                if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $email=$_POST['username_login'];
-                $password=$_POST['password_login'];
-                $query="SELECT * FROM users WHERE email='$email'";
-                $result=mysqli_query($conn,$query);
-                $row_num=mysqli_num_rows($result);
-                if($row_num==0){
-                    echo "user does not exits";
-                }
-                else if($row_num==1){
-                     $row=mysqli_fetch_assoc($result);
-                     $name=$row['username'];
-                     $hashed_password=$row['password'];
-                     if(password_verify($password,$hashed_password)){
-                        session_start();
-                        $_SESSION['loggedin']=true;
-                        $_SESSION['username']=$name;
-                     }
-                     else{
-                        echo "login failed";
-                     }
-                }
-                }
-                mysqli_close($conn);
-            }
-               ?>
+                ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
@@ -149,7 +148,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
-        
+
     </div>
 </div>
 

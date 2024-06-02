@@ -100,6 +100,13 @@
                             <div id="c_passwordError" class="error-message"></div>
                         </div>
                         <div class="form-group">
+                            <label for="role">Are you an Owner/Tenant?</label>
+                            <select id="role" class="p-1 form-control me-2" name="role" required>
+                                <option value="tenant">Tenant</option>
+                                <option value="owner">owner</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <input type="submit" value="Sign Up">
                         </div>
                     </form>
@@ -129,6 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $role=mysqli_real_escape_string($conn, $_POST['role']);
 
     // If there are no validation errors, proceed with inserting data into database
         // Hash the password
@@ -141,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors[] = "Email already exists in the database";
         } else {
             // Insert data into database
-            $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
+            $sql = "INSERT INTO users (username, email, password,role) VALUES ('$username', '$email', '$hashed_password','$role')";
             if (mysqli_query($conn, $sql)) {
                 echo "Sign up Successful! Please login to continue";
             } else {
