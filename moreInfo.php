@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -65,11 +63,11 @@
                 $length = count($img_array);
                 for ($j = 0; $j < $length; $j++) {
                     echo '
-              <div class="carousel-item active">
-              <img src="Images/' . $img_array[$j] . '" class="d-block w-100" alt="...">
-          </div>
-              ';
-                };
+                        <div class="carousel-item active">
+                            <img src="Images/' . $img_array[$j] . '" class="d-block w-100" alt="image'.$j.'">
+                        </div>
+                    ';
+                }
                 ?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

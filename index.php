@@ -23,8 +23,12 @@
   </nav>
 
   <div class="content">
+   
     <!-- filters -->
     <div class="filters w-25 mx-1">
+    <?php
+      include "burger.php"; 
+    ?>
       <!-- range -->
       <div class="price-range my-4">
         <input type="range" min="1000" max="20000" value="1000" class="slider" id="priceRange">
@@ -95,7 +99,7 @@
           <label for="transport">Proximity to Public Transportation</label><br>
         </div>
         
-        <!-- Low Priority (Additional Comfort and Social Amenities) -->
+        
         <div>
           <h6>Social Amenities:</h6>
           <input class="form-check-input" type="checkbox" id="commonAreas" name="facility[]" value="commonAreas">
@@ -117,7 +121,7 @@
           <label for="parking">Parking</label><br>
         </div>
 
-        <!-- Personal Preferences (Based on Individual Needs) -->
+        
         <div>
           <h6>Personal Preferences :</h6>
           <input class="form-check-input" type="checkbox" id="petPolicy" name="facility[]" value="petPolicy">
@@ -135,8 +139,6 @@
     <!-- properties -->
     <div class="properties w-75 mx-1">
       <p><?php
-
-
           // Check if the session variable is set
           if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
             echo '
@@ -167,6 +169,7 @@
         $street_address = $row['address'];
         $area_location = $row['area_location'];
         $city = $row['city'];
+        $location_url=$row['location_url'];
         $owner_id = $row['owner_id'];
         $gender = $row['gender'];
         $sql2 = "SELECT * FROM IMAGES WHERE id=$id";
@@ -180,7 +183,7 @@
         <div class="d-flex">
           <img class="map-logo" src="Images/gmapsymbol.png" alt="">
           <div class="addressInfo">
-            <p class="address" style="font-size:17px;">' . $maintype . ',' . $area_location . ' ,' . $street_address . ', ' . $city . '</p>
+            <p class="address" style="font-size:17px;">' . $maintype . ' ,"' . $street_address . '" ,' . $area_location . ' ,' . $city . '</p>
             <p class="nearPlace">2 km form Fergusson College pune</p>
           </div>
         </div>
@@ -209,14 +212,12 @@
               <p class="m-auto"><button type="button" class="btn btn-primary mx-1"><a href="moreInfo.php?p_id=' . $id . '" class="text-light">More Info</a></button></p>    
             </div>
             <div class="rating">
-              <span><img id="img1" src="Images/star_1828884.png" alt=""></span>
-              <span><img id="img2" src="Images/star_1828884.png" alt=""></span>
-              <span><img id="img3" src="Images/star_1828884.png" alt=""></span>
-              <span><img id="img4" src="Images/star_1828970.png" alt=""></span>
-              <span><img id="img5" src="Images/star_1828970.png" alt=""></span>
+              <span><h5>3.5<i class="fa-solid fa-star" style="color: #FFD43B;"></i></h5></span>
             </div>
             <div class="info-buttons d-flex">
-              <button type="button" class="btn btn-primary mx-1">Location</button>
+            <a href="'.$location_url.'">
+            <button type="button" class="btn btn-primary mx-1">Location</button>
+            </a>
               <button type="button" class="btn btn-primary mx-1">Contact Owner</button>
               <button type="button" class="btn btn-primary mx-1">Chat With Owner</button>
             </div>
@@ -234,5 +235,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/85590c8254.js" crossorigin="anonymous"></script>
 </body>
-
 </html>
