@@ -76,7 +76,7 @@
                 <div class="signup-container">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="signup-form" onsubmit="return validateForm()">
                         <h2>Sign Up</h2>
-                        <a href="" class="mx-4">Already have an account ?</a>
+                        <a href="" class="mx-4" data-bs-toggle="modal" data-bs-target="#loginModal">Already have an account ?</a>
                         <div class="form-group">
                             <label for="username">Username:</label>
                             <input type="text" id="username" class="p-1 form-control me-2" name="username">
@@ -89,13 +89,13 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <i id="hide" class="fas fa-eye" onclick="hide('password')"></i>
+                            <i id="hide" class="fas fa-eye" onclick="togglePasswordVisibility('password')"></i>
                             <input type="password" id="password" class="p-1 form-control me-2" name="password">
                             <div id="passwordError" class="error-message"></div>
                         </div>
                         <div class="form-group">
                             <label for="c_password">Confirm Password:</label>
-                            <i id="hide" class="fas fa-eye" onclick="hide('c_password')"></i>
+                            <i id="hide" class="fas fa-eye" onclick="togglePasswordVisibility('c_password')"></i>
                             <input type="password" id="c_password" class="p-1 form-control me-2" name="password">
                             <div id="c_passwordError" class="error-message"></div>
                         </div>
@@ -121,6 +121,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "rentalapp";
+$signedup=false;
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -133,25 +134,34 @@ if (!$conn) {
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve and sanitize form data
+    if(isset($_POST['username'])){
     $username = mysqli_real_escape_string($conn, $_POST['username']);
+    }
+    if(isset($_POST['email'])){
     $email = mysqli_real_escape_string($conn, $_POST['email']);
+    }
+    if(isset($_POST['password'])){
     $password = mysqli_real_escape_string($conn, $_POST['password']);
+    }
+    if(isset($_POST['role'])){
     $role=mysqli_real_escape_string($conn, $_POST['role']);
-
+    }
     // If there are no validation errors, proceed with inserting data into database
         // Hash the password
+        if(isset($username) && isset($email) && isset($password) && isset($role)){
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Check if email already exists
         $check_query = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $check_query);
         if (mysqli_num_rows($result) > 0) {
-            $errors[] = "Email already exists in the database";
+            $errors[] = "Email already exists";
         } else {
             // Insert data into database
             $sql = "INSERT INTO users (username, email, password,role) VALUES ('$username', '$email', '$hashed_password','$role')";
             if (mysqli_query($conn, $sql)) {
-                echo "Sign up Successful! Please login to continue";
+                echo "Sign up Successful! Please login to continue;";
+                $signedup=true;
             } else {
                 $errors[] = "Error: " . mysqli_error($conn);
             }
@@ -165,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
+}
 // Close connection
 mysqli_close($conn);
 ?>
@@ -177,4 +187,5 @@ mysqli_close($conn);
 
 <script src="components/validations.js"></script>
 <script src="components/signup_login_combine.js"></script>
+
 

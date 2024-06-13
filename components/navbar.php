@@ -72,12 +72,13 @@
     let list = document.getElementById('list');
     // Get the value of the input field and remove whitespace
     let area = document.getElementById('searchInput').value.replace(/\s/g, '');
+    let areaName=area;
     if (area != "") {
       // Create a new list item
       let listItem = document.createElement('li');
       listItem.id = area;
       listItem.className = 'mx-2';
-      listItem.textContent = area;
+      listItem.textContent = areaName;
 
       // Create a delete button
       let deleteButton = document.createElement('button');
@@ -119,7 +120,7 @@
     echo "logoutbtn.style.display='block';";
   } else {
     echo "loginbtn.style.display='block';";
-    echo "logoutbtn.style.display='none';";
+    echo "logoutbtn.style.display='none'";
   }
   ?>
 </script>

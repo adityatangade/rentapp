@@ -83,20 +83,20 @@
             </div>
             <div class="modal-body">
                 <div class="login-container">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="login-form">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="login-form" onsubmit="return validateLoginForm()">
                         <h2>Login</h2>
                         <div class="form-group">
                             <label for="username">Username:</label>
-                            <input type="text" id="username_login" class="p-1 form-control me-2" name="username_login" placeholder="username or email" required>
+                            <input type="email" id="username_login" class="p-1 form-control me-2" name="username_login" placeholder="email" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <i id="hide" class="fas fa-eye" onclick="hide('password_login')"></i>
+                            <i id="hide" class="fas fa-eye" style="margin-right:5px;" onclick="togglePasswordVisibility('password_login')"></i>
                             <input type="password" id="password_login" class="p-1 form-control me-2" name="password_login" placeholder="password" required>
                         </div>
                         <a href="" class="mx-4">Forgot Password ?</a>
                         <div class="form-group">
-                            <input type="submit" class="bg-primary" class="p1 form-control me-2" value="Login">
+                            <input type="submit" class="bg-primary p1 form-control me-2" value="Login">
                         </div>
                     </form>
                 </div>
@@ -105,6 +105,8 @@
                 $username = "root";
                 $password = "";
                 $dbname = "rentalapp";
+                $isFailed=false;
+                $userExist=true;
 
                 // Create connection
                 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -118,24 +120,24 @@
                         if (isset($_POST['username_login']) || isset($_POST['password_login'])) {
                             $email = $_POST['username_login'];
                             $password = $_POST['password_login'];
-                        $query = "SELECT * FROM users WHERE email='$email'";
-                        $result = mysqli_query($conn, $query);
-                        $row_num = mysqli_num_rows($result);
-                        if ($row_num == 0) {
-                            echo "user does not exits";
-                        } else if ($row_num == 1) {
-                            $row = mysqli_fetch_assoc($result);
-                            $name = $row['username'];
-                            $hashed_password = $row['password'];
-                            if (password_verify($password, $hashed_password)) {
-                                session_start();
-                                $_SESSION['loggedin'] = true;
-                                $_SESSION['username'] = $name;
-                            } else {
-                                echo "login failed";
+                            $query = "SELECT * FROM users WHERE email='$email'";
+                            $result = mysqli_query($conn, $query);
+                            $row_num = mysqli_num_rows($result);
+                            if ($row_num == 0) {
+                                $userExist=false;
+                            } else if ($row_num == 1) {
+                                $row = mysqli_fetch_assoc($result);
+                                $name = $row['username'];
+                                $hashed_password = $row['password'];
+                                if (password_verify($password, $hashed_password)) {
+                                    session_start();
+                                    $_SESSION['loggedin'] = true;
+                                    $_SESSION['username'] = $name;
+                                } else {
+                                    $isFailed="true";
+                                }
                             }
                         }
-                    }
                     }
                     mysqli_close($conn);
                 }
@@ -152,4 +154,4 @@
     </div>
 </div>
 
-<script src="components/signup_login_combine.js"></script>
+<script src="components/login_validation.js"></script>

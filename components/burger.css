@@ -68,3 +68,12 @@ body {
     font-size: larger;
     margin: auto;
 }
+
+@media (max-width: 999px) {
+    .burger-icon{
+        display: none;
+    }
+    .burger-menu{
+        display: none;
+    }
+}
