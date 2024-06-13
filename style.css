@@ -68,7 +68,7 @@ body{
 /* range */
 .price-range {
     width: 65%;
-    margin: 9.5%;
+    margin-left: 9.5%;
   }
   
 .slider {
@@ -132,6 +132,7 @@ body{
     position: absolute;
     right: 0;
     top: 70px;
+    width: 75%;
   }
 
   .property-details{
@@ -153,14 +154,14 @@ body{
   }
   /* carousal s*/
 .carouse-contain {
-      position: relative;
-      width: 45%; /* Increased width */
-      min-height: 320px;
-      height: 100%; /* Increased height */
-      overflow: hidden;
-      margin-bottom: 20px; /* Added margin for separation */
-      background-color: #333;
-    }
+  position: relative;
+  width: 45%;
+  min-height: 300px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #333;
+}
+    
     .carouse {
       display: flex;
       transition: transform 0.5s ease;
@@ -176,19 +177,16 @@ body{
       width: 100%; /* Adjusted to 100% */
       flex: 0 0 auto;
       position: relative;
-     margin: auto;
+      margin: auto;
+      text-align: center;
     
     }
 
     .carouse-item img {
-    width: 90%;
-    height: fit-content;
     object-fit: cover;
-    margin-left: 5%;
-    margin-top: 5%;
-      /* margin-top: auto;
-      margin-bottom: auto; */
-      /* Ensure the image covers the entire container */
+    height: 300px;
+    width: fit-content;
+    margin:auto;
     }
     .prev, .next {
       cursor: pointer;
@@ -218,7 +216,7 @@ body{
 
 
 .property-details .address {
-  font-size: 20px;
+  font-size: 15px;
   width: 100%;
 }
 .addresses{
@@ -236,12 +234,14 @@ body{
  } 
 
 .info-content{
-  width: 100%;
-  height: 70%;
+  width:100%;
   border: 1px solid rgb(236, 224, 224);
-  margin: 11%;
   display: grid;
+  font-size: 15px;
   grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+  justify-content: center;
+  margin-top: -10%;
 }
 
 .info-content .grid-item{
@@ -250,24 +250,20 @@ body{
   align-items: center;
   justify-content: center;
   margin: 0px;
+  height: 100px;
 }
 
  .card{
   width: 100%;
-  /* border:1px solid #ded4d4; */
-  /* border-radius: 10px; */
   overflow: hidden;
   margin:auto;
   display: flex;
   flex-direction: row;
-  
-
-
   /* new */
    /* Adjust height as needed */
     background-color: #fff; /* Background color of the div */
-    /* border-radius: 10px; Adjust border radius as needed */
-    /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5); */
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px rgba(0.1, 0.1, 0.1, 0.1); 
     transform: translateY(-5px); /*Uplifting effect*/
     transition: transform 0.3s ease;
  }
@@ -282,16 +278,104 @@ body{
   width: 25px;
  }
 
- .info-buttons{
-   position: absolute;
-   bottom: 10px;
-   width: fit-content;
-   margin-left: 10px;
-   width: fit-content;
-    margin-left: 5%;
+ .info-container{
+  text-align: center;
+  margin: auto;
  }
 
+ .info-container .btn{
+  font-size: small;
+ }
+ .info-buttons{
+   position: absolute;
+   bottom: 5px;
+   width: fit-content;
+   font-size: 15px;
+   
+ }
+
+ .info-buttons .btn{
+  font-size: small;
+  margin-right: 5px;
+ }
+
+ .info-buttons #moreDetailsBtn{
+  display: none;
+ }
  hr{
   width: 82%;
   margin: auto;
+}
+
+/* making the site responsive */
+@media (max-width: 1035px) {
+  .content{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding:0px;
+    width: 88vw;
+  }
+  .properties{
+    width: 100vw;
+  }
+  .property-details{
+    width: 100%;
+  }
+  .property-details .address{
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 30px 0px;
+    border: none;
+    border-radius: 0;
+  }
+
+  .filters{
+    display: none;
+  }
+  .property-details .address {
+    font-size: 15px;
+    width: 100%;
+  }
+  .card{
+    flex-direction: column;
+    margin-left: 0;
+    border-radius: 0;
+  }
+  .carouse-contain {
+    position: relative;
+    width: 100%;
+    border-radius: none;
+  }
+  .carouse-item img{
+    height: 300px;
+  }
+  .info-container{
+    margin-top: 40px;
+  }
+  .info-content{
+    border: 1px solid white;
+  }
+  .info-content .removable{
+    display: none;
+  }
+  .info-buttons{
+    position: relative;
+    margin: auto;
+  }
+  .info-buttons .c-w-o{
+    display: none;
+  }
+  .info-buttons #moreDetailsBtn{
+    display:block ;
+  }
+  .info-content{
+    width: 100%;
+    border: none;
+    margin-bottom: 2%;
+  }
+  .info-content .grid-item{
+    height: fit-content;
+    border: none;
+    font-size: medium ;
+  }
 }
