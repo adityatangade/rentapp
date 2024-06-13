@@ -137,16 +137,36 @@
 
     </div>
     <!-- properties -->
-    <div class="properties w-75 mx-1">
+    <div class="properties mx-1">
       <p><?php
           // Check if the session variable is set
           if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
             echo '
   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
-   Welcome ' . $_SESSION['username'] . ' you are logged in successfully ! 
+  Login successful ! 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
-          } else {
+          }
+          else if($signedup){
+            echo '
+            <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
+             You are registered Now ! Please login to continue . 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+          } 
+          else if($isFailed){
+             echo '   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
+        login failed ! please try again .
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+           }
+          else if(!$userExist){
+             echo '   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
+        user does not exist ! please sign up if not have an account.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+           }
+          else {
             echo '
   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
     please log in for better experience !
@@ -183,7 +203,7 @@
         <div class="d-flex">
           <img class="map-logo" src="Images/gmapsymbol.png" alt="">
           <div class="addressInfo">
-            <p class="address" style="font-size:17px;">' . $maintype . ' ,"' . $street_address . '" ,' . $area_location . ' ,' . $city . '</p>
+            <p class="address">' . $maintype . ' ,"' . $street_address . '" ,' . $area_location . ' ,' . $city . '</p>
             <p class="nearPlace">2 km form Fergusson College pune</p>
           </div>
         </div>
@@ -202,25 +222,29 @@
             <button class="prev" onclick="prevSlide(' . $i . ')">&#10094;</button>
             <button class="next" onclick="nextSlide(' . $i . ')">&#10095;</button>
           </div>
+          <div class="info-container">
           <div class="Info grid-container">
-            <div class="info-content">
-              <p class="grid-item text-dark">$' . $rent . '/month</p>
-              <p class="grid-item">' . $type . '</p>
-              <p class="grid-item">' . $gender . '</p>
-              <p class="grid-item">Internet/Wifi 5G</p>
-              <p class="grid-item">Laundary</p>
-              <p class="m-auto"><button type="button" class="btn btn-primary mx-1"><a href="moreInfo.php?p_id=' . $id . '" class="text-light">More Info</a></button></p>    
-            </div>
-            <div class="rating">
+           <div class="rating">
               <span><h5>3.5<i class="fa-solid fa-star" style="color: #FFD43B;"></i></h5></span>
             </div>
+            <div class="info-content mx-auto">
+              <p class="grid-item text-dark"><strong class="text-success">$' . $rent . '</strong>/month</p>
+              <p class="grid-item">' . $gender . '</p>
+              <p class="grid-item">' . $type . '</p>
+              <p class="grid-item removable">Internet/Wifi 5G</p>
+              <p class="grid-item removable">Laundary</strong></p>
+              <p class="m-auto removable"><button type="button" class="btn btn-primary mx-1"><a href="moreInfo.php?p_id=' . $id . '" class="text-light">View Details</a></button></p>    
+            </div>
+
             <div class="info-buttons d-flex">
             <a href="'.$location_url.'">
-            <button type="button" class="btn btn-primary mx-1">Location</button>
+            <button type="button" class="btn btn-primary">Location</button>
             </a>
-              <button type="button" class="btn btn-primary mx-1">Contact Owner</button>
-              <button type="button" class="btn btn-primary mx-1">Chat With Owner</button>
+              <button type="button" class="btn btn-primary">Contact Owner</button>
+              <button type="button" class="btn btn-primary c-w-o">Chat With Owner</button>
+              <button type="button" id="moreDetailsBtn" class="btn btn-primary mx-1"><a href="moreInfo.php?p_id=' . $id . '" class="text-light">View Details</a></button>   
             </div>
+          </div>
           </div>
         </div>
         <!-- <div class="Reviews">Reviews</div> -->
