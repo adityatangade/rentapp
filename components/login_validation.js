@@ -27,7 +27,6 @@ function validateEmail(email) {
 function togglePasswordVisibility(passwordFieldId) {
     var passwordField = document.getElementById(passwordFieldId);
     var passwordIcon = document.getElementById("hide");
-
     if (passwordField.type === "password") {
         passwordField.type = "text";
         passwordIcon.classList.remove("fa-eye");
@@ -37,5 +36,17 @@ function togglePasswordVisibility(passwordFieldId) {
         passwordField.type = "password";
         passwordIcon.classList.remove("fa-eye-slash");
         passwordIcon.classList.add("fa-eye");
+    }  
+}
+
+function togglePasswordVisibilityShowBtn(passwordFieldId) {
+    var passwordField = document.getElementById(passwordFieldId);
+    var btnContent=document.getElementsByClassName("show-password");
+    if (passwordField.type === "password") {
+        btnContent.innerHTML='hide';
+    passwordField.type = "text";
+    } else {
+    btnContent.innerHTML='show';
+    passwordField.type = "password";
     }
 }

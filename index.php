@@ -1,5 +1,5 @@
 <?php
-  session_start();
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,12 +23,12 @@
   </nav>
 
   <div class="content">
-   
+
     <!-- filters -->
     <div class="filters w-25 mx-1">
-    <?php
-      include "burger.php"; 
-    ?>
+      <?php
+      include "burger.php";
+      ?>
       <!-- range -->
       <div class="price-range my-4">
         <input type="range" min="1000" max="20000" value="1000" class="slider" id="priceRange">
@@ -98,8 +98,8 @@
           <input class="form-check-input" type="checkbox" id="transport" name="facility[]" value="transport">
           <label for="transport">Proximity to Public Transportation</label><br>
         </div>
-        
-        
+
+
         <div>
           <h6>Social Amenities:</h6>
           <input class="form-check-input" type="checkbox" id="commonAreas" name="facility[]" value="commonAreas">
@@ -121,7 +121,7 @@
           <label for="parking">Parking</label><br>
         </div>
 
-        
+
         <div>
           <h6>Personal Preferences :</h6>
           <input class="form-check-input" type="checkbox" id="petPolicy" name="facility[]" value="petPolicy">
@@ -138,6 +138,30 @@
     </div>
     <!-- properties -->
     <div class="properties mx-1">
+      <div class="for-mob">
+        <form class="search mx-3 for-mob-search" role="search">
+          <select class="cities mx-2 form-control me-2" name="metro_cities_india" id="metro_cities_india_index_page">
+            <option value="Ahmedabad">Ahmedabad</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Pune">Pune</option>
+            <option value="Surat">Surat</option>
+          </select> <br>
+          <div class="add-area">
+            <input class="search-input form-control me-2 " type="search" id="search-input" placeholder="Shivaji Nagar" aria-label="Search">
+            <span class="btn btn-outline-success" onclick="addAreaIndex()">Add</span>
+          </div>
+        </form>
+        <br>
+      </div>
+      <div class="my-3">
+          <ul id="index-list" class="me-auto mb-2 mb-lg-0 for-mob"></ul>
+        </div>
       <p><?php
           // Check if the session variable is set
           if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
@@ -146,27 +170,23 @@
   Login successful ! 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
-          }
-          else if($signedup){
+          } else if ($signedup) {
             echo '
             <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
              You are registered Now ! Please login to continue . 
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
-          } 
-          else if($isFailed){
-             echo '   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
+          } else if ($isFailed) {
+            echo '   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
         login failed ! please try again .
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
-           }
-          else if(!$userExist){
-             echo '   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
+          } else if (!$userExist) {
+            echo '   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
         user does not exist ! please sign up if not have an account.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
-           }
-          else {
+          } else {
             echo '
   <div class="alert alert-success alert-dismissible fade show w-75 mx-auto" role="alert">
     please log in for better experience !
@@ -189,7 +209,7 @@
         $street_address = $row['address'];
         $area_location = $row['area_location'];
         $city = $row['city'];
-        $location_url=$row['location_url'];
+        $location_url = $row['location_url'];
         $owner_id = $row['owner_id'];
         $gender = $row['gender'];
         $sql2 = "SELECT * FROM IMAGES WHERE id=$id";
@@ -237,7 +257,7 @@
             </div>
 
             <div class="info-buttons d-flex">
-            <a href="'.$location_url.'">
+            <a href="' . $location_url . '">
             <button type="button" class="btn btn-primary">Location</button>
             </a>
               <button type="button" class="btn btn-primary">Contact Owner</button>
@@ -259,4 +279,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/85590c8254.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

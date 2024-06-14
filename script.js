@@ -81,3 +81,52 @@ document.addEventListener('keydown', function(event) {
 function moveToImagesPage() {
   window.location.href = 'moreInfo.php';
 }
+
+
+// search
+
+function addAreaIndex() {
+  // Get the list element
+  let list = document.getElementById('index-list');
+  // Get the value of the input field and remove whitespace
+  let area = document.getElementById('search-input').value.replace(/\s/g, '');
+  let areaName=area;
+  if (area != "") {
+    // Create a new list item
+    let listItem = document.createElement('li');
+    listItem.id = area;
+    listItem.className = 'mx-2 my-2';
+    listItem.textContent = areaName;
+
+    // Create a delete button
+    let deleteButton = document.createElement('button');
+    deleteButton.className = 'area-btn text-warning delete-btn';
+    deleteButton.textContent = 'X';
+    deleteButton.onclick = function() {
+      deleteParent(area);
+    };
+
+    // Append the delete button to the list item
+    listItem.appendChild(deleteButton);
+
+    // Append the list item to the list
+    list.appendChild(listItem);
+  } else {
+    console.log("Empty");
+  }
+}
+
+
+function deleteParent(area) {
+  // Find the list item corresponding to the area
+  let listItem = document.getElementById(area);
+
+  // Check if the list item exists
+  if (listItem) {
+    // Remove the list item from its parent node
+    listItem.parentNode.removeChild(listItem);
+  } else {
+    // Handle the case where the list item is not found (optional)
+    console.log("List item not found for area: " + area);
+  }
+}

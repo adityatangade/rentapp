@@ -18,6 +18,23 @@
     margin-left: 1px;
     border: none;
   }
+  .for-mobile{
+    display: none;
+  }
+
+  .search{
+    display: flex;
+  }
+
+  @media (max-width: 1035px)
+  {
+    .for-mobile{
+      display: block;
+    }
+    .search{
+      display: none;
+    }
+  }
 </style>
 <head>
   <link rel="stylesheet" href="style.css">
@@ -33,11 +50,20 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active for-mobile" aria-current="page" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active for-mobile" aria-current="page" href="#">Service</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active for-mobile" aria-current="page" href="#">Contact</a>
+        </li>
       </ul>
       <ul id="list" class="d-flex navbar-nav me-auto mb-2 mb-lg-0">
 
       </ul>
-      <form class="search d-flex mx-3" role="search">
+      <form class="search mx-3" role="search">
         <select class="cities mx-2 form-control me-2" name="metro_cities_india" id="metro_cities_india">
           <option value="Ahmedabad">Ahmedabad</option>
           <option value="Bangalore">Bangalore</option>
@@ -59,7 +85,7 @@
       <button type="button" id="loginbtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
         login
       </button>
-      <button type="button" id="logoutbtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+      <button type="button" id="logoutbtn" class="btn btn-primary">
         <a href="logout.php" style="text-decoration:none;color:white;">logout</a>
       </button>
     </div>
@@ -119,8 +145,8 @@
     echo "loginbtn.style.display='none';";
     echo "logoutbtn.style.display='block';";
   } else {
+    echo "logoutbtn.style.display='none';";
     echo "loginbtn.style.display='block';";
-    echo "logoutbtn.style.display='none'";
   }
   ?>
 </script>

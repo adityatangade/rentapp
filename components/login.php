@@ -69,9 +69,38 @@
 
     .form-group i {
         margin-top: 9px;
+        margin-right: 5px;
         position: absolute;
-        right: 160px;
     }
+
+    .show-password{
+        display: none;
+    }
+
+   
+    @media (max-width: 1035px){
+        .show-password
+        {
+            display: block;
+            position: absolute;
+            right: 31%;
+            margin-top: 5px;
+        }
+        .form-group i{
+            display: none;
+        }
+    }
+    
+    @media (min-width: 320px) and (max-width: 400px)
+    {
+        .show-password
+        {
+            position: absolute;
+            right: 23%;
+            margin-top: 5px;
+        }   
+    }
+    
 </style>
 <!-- Modal -->
 <div class="modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -86,12 +115,13 @@
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="login-form" onsubmit="return validateLoginForm()">
                         <h2>Login</h2>
                         <div class="form-group">
-                            <label for="username">Username:</label>
+                            <label for="username_login">Username:</label>
                             <input type="email" id="username_login" class="p-1 form-control me-2" name="username_login" placeholder="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
-                            <i id="hide" class="fas fa-eye" style="margin-right:5px;" onclick="togglePasswordVisibility('password_login')"></i>
+                            <label for="password_login">Password:</label>
+                            <i id="hide" class="fas fa-eye" onclick="togglePasswordVisibility('password_login')"></i>
+                            <span id="show-password" class="show-password text-primary" onclick="togglePasswordVisibilityShowBtn('password_login')">show</span>
                             <input type="password" id="password_login" class="p-1 form-control me-2" name="password_login" placeholder="password" required>
                         </div>
                         <a href="" class="mx-4">Forgot Password ?</a>
