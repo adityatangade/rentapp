@@ -89,13 +89,13 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <i id="hide" class="fas fa-eye" onclick="togglePasswordVisibility('password')"></i>
+                            <i id="hide1" class="fas fa-eye" onclick="togglePasswordVisibility('password')"></i>
                             <input type="password" id="password" class="p-1 form-control me-2" name="password">
                             <div id="passwordError" class="error-message"></div>
                         </div>
                         <div class="form-group">
                             <label for="c_password">Confirm Password:</label>
-                            <i id="hide" class="fas fa-eye" onclick="togglePasswordVisibility('c_password')"></i>
+                            <i id="hide2" class="fas fa-eye" onclick="togglePasswordVisibility('c_password')"></i>
                             <input type="password" id="c_password" class="p-1 form-control me-2" name="password">
                             <div id="c_passwordError" class="error-message"></div>
                         </div>

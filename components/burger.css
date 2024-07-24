@@ -21,10 +21,9 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color:white;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 7%;
 }
 
 .side-nav a {
@@ -53,18 +52,17 @@ body {
     margin-left: 15px;
 }
 
-.profile{
+#submit-btn {
     position: absolute;
-    bottom: 1%;  
-    text-align: center;
+    top: 20px;
+    right: 10px;
 }
 
-.profile-div{
-    border: 1px solid white;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    font-size: larger;
-    margin: auto;
+.price-range
+{
+    margin-top: 85px;
+}
+#mob-filters div
+{
+    width:80vw;    
 }

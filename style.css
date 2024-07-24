@@ -1,9 +1,13 @@
 /* index */
+
+*{
+  max-width: 100vw;
+}
 body{
   overflow-x: hidden;
 }
 .navbar{
-  width:100vw;
+  width:100%;
   position: fixed;
   top: 0;
   z-index: 2;
@@ -17,8 +21,15 @@ body{
 .search-input{
   width: 215px;
 }
+
+.go-btn
+{
+  position: absolute;
+  left: 27px;
+  margin-top: 60px;
+}
 .content{
-    width: 100vw;
+    width: fit-content;
     height: fit-content;
     display: flex;
 }
@@ -104,6 +115,11 @@ body{
     cursor: pointer;
   }
 
+  #filter-form .submit{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+  }
   /* radio buttons */
   .gender{
     width: 80%; 
@@ -121,7 +137,15 @@ body{
     width: 83%; 
   }
 
-  
+  h6 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  label {
+    font-size: 15px;
+ }
   
   :root {
     --width: 100%;
@@ -138,6 +162,9 @@ body{
   .property-details{
     width: 80%;
     margin: auto;
+    margin-right:-2px;
+    margin-left: 2px;
+    margin:auto;
   }
   .property-details .address{
     font-size: 20px;
@@ -184,19 +211,24 @@ body{
 
     .carouse-item img {
     object-fit: cover;
-    height: 300px;
+    height:300px;
     width: fit-content;
+    max-width: 100%;
     margin:auto;
     }
     .prev, .next {
       cursor: pointer;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: black;
-      padding: 10px;
-      border: none;
-      z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+    padding: 10px;
+    /* padding: 15px; */
+    border: none;
+    /* opacity: 50%; */
+    z-index: 1;
+    /* background: none; */
+    /* font-size: 20px */
     }
     .prev {
       left: 0;
@@ -209,6 +241,10 @@ body{
 /* search facilities */
 
 .for-mob{
+  display: none;
+}
+
+.for-mob-burger{
   display: none;
 }
 
@@ -319,6 +355,12 @@ body{
 
 /* making the site responsive */
 @media (max-width: 1035px) {
+  .for-mob-burger{
+    display: block;
+    position: absolute;
+    top: -30px;
+    right: 8px;
+  }
   .content{
     display: grid;
     grid-template-columns: 1fr;
@@ -332,7 +374,6 @@ body{
     display: flex;
     flex-direction: column;
     width: 150px;
-    
   }
 
   .add-area{
@@ -359,13 +400,20 @@ body{
   .filters{
     display: none;
   }
+
+  .property-details
+  {
+    margin-left: 2px;
+    margin-right: -3px;
+  }
+
   .property-details .address {
     font-size: 15px;
     width: 100%;
   }
   .card{
     flex-direction: column;
-    margin-left: 0;
+    margin-left: 2px;
     border-radius: 0;
   }
   .carouse-contain {
@@ -376,6 +424,14 @@ body{
   .carouse-item img{
     height: 300px;
   }
+
+  .prev, .next {
+  color: black;
+  padding: 15px;
+  background: none;
+  font-size: 20px;
+  }
+
   .info-container{
     margin-top: 40px;
   }
@@ -389,9 +445,7 @@ body{
     position: relative;
     margin: auto;
   }
-  .info-buttons .c-w-o{
-    display: none;
-  }
+  
   .info-buttons #moreDetailsBtn{
     display:block ;
   }
@@ -403,7 +457,7 @@ body{
   .info-content .grid-item{
     height: fit-content;
     border: none;
-    font-size: medium ;
+    font-size: 15px ;
   }
 
   #index-list
@@ -414,5 +468,11 @@ body{
   #index-list li{
     list-style: none;
     display: flex;
+    flex-direction: row;
+  }
+
+  #moreDetailsBtn a{
+    text-decoration: none;
   }
 }
+

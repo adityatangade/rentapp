@@ -1,3 +1,15 @@
+//jQuery script for sending data to the next page without reload
+function myfun(datavalue){
+  $.ajax({
+      url:'getContent.php',
+      type:'POST',
+      data:{datapost :datavalue},
+      success:function(result){
+          $('#dataget').html(result);
+      }
+  })
+}
+
 
 const priceRange = document.getElementById("priceRange");
 const priceValue = document.getElementById("priceValue");
@@ -16,7 +28,6 @@ function toggleImage(id) {
       image.alt = 'Image 1';
   }
 }
-
 
 // crousal
 
@@ -89,8 +100,8 @@ function addAreaIndex() {
   // Get the list element
   let list = document.getElementById('index-list');
   // Get the value of the input field and remove whitespace
+  let areaName=document.getElementById('search-input').value;
   let area = document.getElementById('search-input').value.replace(/\s/g, '');
-  let areaName=area;
   if (area != "") {
     // Create a new list item
     let listItem = document.createElement('li');
@@ -129,4 +140,17 @@ function deleteParent(area) {
     // Handle the case where the list item is not found (optional)
     console.log("List item not found for area: " + area);
   }
+}
+
+
+//autosubmission of the filters form
+
+function autoSubmit()
+{
+  document.getElementById('autoFilters').submit();
+}
+
+function autoSubmitCity()
+{
+  document.getElementById('citySearch').submit();
 }
